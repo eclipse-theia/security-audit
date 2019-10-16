@@ -1,0 +1,62 @@
+{
+    "defaultSeverity": "error",
+    "jsRules": {},
+    "rules": {
+        "await-promise": true,
+        "curly": true,
+        "indent": [
+            true,
+            "spaces",
+            4
+        ],
+        "jsdoc-format": [
+            true,
+            "check-multiline-start"
+        ],
+        "no-consecutive-blank-lines": true,
+        "no-redundant-jsdoc": true,
+        "no-return-await": true,
+        "no-trailing-whitespace": true,
+        "no-unsafe-finally": true,
+        "no-unused-expression": true,
+        "no-unused-variable": true,
+        "no-var-keyword": true,
+        "prefer-const": true,
+        "quotemark": [
+            true,
+            "single",
+            "jsx-single",
+            "avoid-escape",
+            "avoid-template"
+        ],
+        "semicolon": [
+            true,
+            "always",
+            "ignore-interfaces"
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            }
+        ],
+        "variable-name": false,
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    },
+    "rulesDirectory": []
+}

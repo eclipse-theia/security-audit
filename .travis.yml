@@ -1,0 +1,43 @@
+sudo: required
+language: node_js
+node_js:
+  - 10
+env:
+  global:
+  - NODE_OPTIONS="--max_old_space_size=4096"
+git:
+  depth: 1
+addons:
+  apt:
+    update: true
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+    - libsecret-1-dev
+    - xvfb
+    - libx11-dev
+    - libxkbfile-dev
+    chrome: stable
+branches:
+  only:
+  - master
+before_script:
+  - yarn --version
+  - travis_retry npm i
+  - travis_retry npm run build
+script:
+  - travis_retry npm run parse
+jobs:
+  allow_failures:
+    - travis_retry npm run audit
+    - travis_retry npm run parse
+  fast_finish: true
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: docs
+  keep_history: true
+  on:
+    branch: master
