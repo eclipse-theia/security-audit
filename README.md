@@ -1,14 +1,14 @@
 <div align='center'>
 <br />
-<img src='https://raw.githubusercontent.com/vince-fugnitto/security-audit/master/assets/logo.svg?sanitize=true' alt='theia logo' width='125'>
+<img src='https://raw.githubusercontent.com/theia-ide/security-audit/master/assets/logo.svg?sanitize=true' alt='theia logo' width='125'>
 
 <h2>THEIA - SECURITY AUDIT</h2>
 
 <div>
 
-[<img src="https://raw.githubusercontent.com/vince-fugnitto/security-audit/master/assets/gh-pages.png" alt="github pages" width="150px"/>](https://vince-fugnitto.github.io/security-audit/)
+[<img src="https://raw.githubusercontent.com/theia-ide/security-audit/master/assets/gh-pages.png" alt="github pages" width="150px"/>](https://theia-ide.github.io/security-audit/)
 
-[<img src="https://api.travis-ci.com/vince-fugnitto/security-audit.svg?branch=master" alt="travis status"/>](https://travis-ci.com/vince-fugnitto/security-audit/builds)
+[<img src="https://api.travis-ci.com/theia-ide/security-audit.svg?branch=master" alt="travis status"/>](https://travis-ci.com/theia-ide/security-audit/builds)
 
 </div>
 
