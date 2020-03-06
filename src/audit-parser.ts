@@ -16,6 +16,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { resolve } from 'url';
 
 /**
  * Representation of a vulnerability scan result.
@@ -79,14 +80,15 @@ export const dir = path.parse(__dirname);
 /**
  * Parse the list of results.
  */
-export function parseResults(): Result[] {
+export async function parseResults(): Promise<Result[]> {
     console.log('----------------------\nParsing...\n----------------------\n');
     // Extract the content of the auditing results.
-    const auditContent: string = fs.readFileSync(`${dir.dir}/output/audit.jsonl`, 'utf8').trim();
+    const readStream = fs.createReadStream(`${dir.dir}/output/audit.jsonl`, 'utf8');
+    const data = await readAudit(readStream) as string;
     const results: Result[] = [];
     // Each line in the audit represents a valid JSON object.
     // Filter out any possible blank lines.
-    const lines: string[] = auditContent.split('\n').filter(line => line.length > 0);
+    const lines: string[] = data.split('\n').filter(line => line.length > 0);
     console.log(`Extracting Lines (Total ${lines.length})\n`);
     lines.forEach((line, index) => {
         console.log(`  Line #${index + 1}: { ${line.slice(0, 100)}... }`);
@@ -139,8 +141,8 @@ export function parseResults(): Result[] {
 /**
  * Build the result table in markdown format.
  */
-export function buildResultsTable(): string {
-    const results: Result[] = parseResults();
+export async function buildResultsTable(): Promise<string> {
+    const results: Result[] = await parseResults();
     if (!results.length) {
         return 'No vulnerabilities found!';
     }
@@ -156,12 +158,22 @@ export function buildResultsTable(): string {
     return markdown;
 }
 
+export function readAudit(stream: fs.ReadStream, encoding = 'utf8') {
+    stream.setEncoding(encoding);
+    return new Promise((resolve, _reject) => {
+        let data = '';
+        stream.on('data', chunk => data += chunk);
+        stream.on('end', () => resolve(data));
+    });
+}
+
 /**
  * Parse the result determining the overall summary.
  */
-export function parseSummary(): Map<number, string> {
+export async function parseSummary(): Promise<Map<number, string>> {
     // Get the content of the audit results.
-    const content = fs.readFileSync('./output/audit.jsonl', 'utf8');
+    const readStream = fs.createReadStream(`${dir.dir}/output/audit.jsonl`, 'utf8');
+    const content: string = await readAudit(readStream) as string;
     // Get the audit results.
     const lines: string[] = content.split('\n').filter(line => line.length > 0);
     // Store a map of IDS and their vulnerability.
@@ -182,11 +194,11 @@ export function parseSummary(): Map<number, string> {
  * Build the summary table.
  * Represents the number of `moderate`, `high` and `critical` severities.
  */
-export function buildSummaryTable(): string {
+export async function buildSummaryTable(): Promise<string> {
     let criticalCount: number = 0;
     let highCount: number = 0;
     let moderateCount: number = 0;
-    const summary: Map<number, string> = parseSummary();
+    const summary: Map<number, string> = await parseSummary();
     summary.forEach((v: string) => {
         if (v === 'critical') {
             criticalCount++;
@@ -211,12 +223,12 @@ export function buildSummaryTable(): string {
 /**
  * Display the results in markdown format.
  */
-export function display(): void {
+export async function display(): Promise<void> {
     const date = new Date();
     const dateStr: string = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} at ${date.getHours()}:${getMinutes(date)} UTC`;
     let content: string = '';
-    const summary: string = buildSummaryTable();
-    const results: string = buildResultsTable();
+    const summary: string = await buildSummaryTable();
+    const results: string = await buildResultsTable();
     content += '<div align=\'center\'><br /><img src="https://raw.githubusercontent.com/theia-ide/security-audit/master/assets/security-header.png" width="400px"/></div>\n\n';
     content += `### Security Audit - ${dateStr}\n-- -\n`;
     content += '\n#### Scan Summary\n';

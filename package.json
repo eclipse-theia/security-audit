@@ -12,9 +12,12 @@
     "typescript": "^3.6.4"
   },
   "scripts": {
-    "build": "cd theia-application && rm -rf node_modules yarn.lock && yarn",
-    "parse": "tsc && node dist/audit-parser.js",
-    "audit": "cd theia-application && yarn audit --json --level=moderate > ../output/audit.jsonl"
+    "clean": "npm run clean:output && npm run clean:readme",
+    "clean:output": "(cd output && rm -rf audit.jsonl && touch audit.jsonl)",
+    "clean:readme": "(cd docs && rm -rf README.md)",
+    "build": "(cd theia-application && rm -rf node_modules yarn.lock && yarn)",
+    "audit": "(cd theia-application && yarn audit --json --level=moderate > ../output/audit.jsonl)",
+    "parse": "tsc && node --max-old-space-size=4096 dist/audit-parser.js"
   },
   "repository": {
     "type": "git",

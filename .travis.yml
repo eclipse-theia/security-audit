@@ -4,35 +4,34 @@ node_js:
   - 10
 env:
   global:
-  - NODE_OPTIONS="--max_old_space_size=4096"
+    - NODE_OPTIONS="--max_old_space_size=4096"
 git:
   depth: 1
 addons:
   apt:
     update: true
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
-    - libsecret-1-dev
-    - xvfb
-    - libx11-dev
-    - libxkbfile-dev
-    chrome: stable
+      - g++-4.8
+      - libsecret-1-dev
+      - xvfb
+      - libx11-dev
+      - libxkbfile-dev
 branches:
   only:
-  - master
+    - master
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.1
+  - export PATH=$HOME/.yarn/bin:$PATH ;
 before_script:
   - yarn --version
-  - travis_retry npm i
-  - travis_retry npm run build
 script:
-  - travis_retry npm run parse
-jobs:
-  allow_failures:
-    - travis_retry npm run audit
-    - travis_retry npm run parse
-  fast_finish: true
+  - npm i
+  - npm run clean
+  - npm run build
+  - npm run audit || true
+  - npm run parse
 deploy:
   provider: pages
   skip_cleanup: true
