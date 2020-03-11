@@ -65,7 +65,7 @@ export interface Result {
     /**
      * Describes if a dependency is a `dependency` or `devDependency`.
      */
-    isDev: string;
+    isDev: boolean;
     /**
      * The URL for additional information.
      */
@@ -117,7 +117,7 @@ export async function parseResults(): Promise<Result[]> {
                     recommendation: escapePipes(json.data.advisory.recommendation),
                     severity: escapePipes(json.data.advisory.severity),
                     path: escapePipes(json.data.resolution.path),
-                    isDev: escapePipes(json.data.resolution.dev),
+                    isDev: json.data.resolution.dev,
                     version: escapePipes(json.data.advisory.findings[0].version),
                     severityCode: getSeverityCode(json.data.advisory.severity),
                     url: escapePipes(json.data.advisory.url),
