@@ -30,6 +30,7 @@ script:
   - npm i
   - npm run clean
   - npm run build
+  - npm run clean:lockfile # cleans the lockfile of any dependencies which results in a 503 error.
   - npm run audit || true
   - npm run parse
 deploy:

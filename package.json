@@ -17,7 +17,8 @@
     "clean:readme": "(cd docs && rm -rf README.md)",
     "build": "(cd theia-application && rm -rf node_modules yarn.lock && yarn)",
     "audit": "(cd theia-application && yarn audit --json --level=moderate > ../output/audit.jsonl)",
-    "parse": "tsc && node --max-old-space-size=4096 dist/audit-parser.js"
+    "parse": "tsc && node --max-old-space-size=4096 dist/audit-parser.js",
+    "clean:lockfile": "tsc && node dist/clean-lockfile.js"
   },
   "repository": {
     "type": "git",

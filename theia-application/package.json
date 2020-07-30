@@ -45,8 +45,5 @@
     },
     "devDependencies": {
         "@theia/cli": "next"
-    },
-    "resolutions": {
-        "event-stream": "3.3.5"
     }
 }
