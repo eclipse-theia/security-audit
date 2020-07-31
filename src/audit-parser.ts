@@ -225,6 +225,15 @@ export async function buildSummaryTable(): Promise<string> {
  */
 export async function display(): Promise<void> {
     const date = new Date();
+
+    // Determine if the audit was successful.
+    const readStream = fs.createReadStream(`${dir.dir}/output/audit.jsonl`, 'utf8');
+    const data = await readAudit(readStream) as string;
+    if (!data.length) {
+        console.log('No new audit information available.\n');
+        return;
+    }
+
     const dateStr: string = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} at ${date.getHours()}:${getMinutes(date)} UTC`;
     let content: string = '';
     const summary: string = await buildSummaryTable();
