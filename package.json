@@ -13,9 +13,8 @@
   },
   "scripts": {
     "clean": "(cd output && rm -rf audit.jsonl && touch audit.jsonl)",
-    "build": "(cd theia-application && rm -rf node_modules yarn.lock && yarn)",
-    "audit": "(cd theia-application && yarn audit --json --level=moderate > ../output/audit.jsonl)",
-    "parse": "tsc && node --max-old-space-size=4096 dist/audit-parser.js"
+    "audit": "(cd theia && yarn audit --json --level=moderate > ../output/audit.jsonl)",
+    "parse": "(cd src && tsc && node --max-old-space-size=4096 dist/audit-parser.js)"
   },
   "repository": {
     "type": "git",

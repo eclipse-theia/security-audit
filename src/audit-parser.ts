@@ -83,7 +83,8 @@ export const dir = path.parse(__dirname);
 export async function parseResults(): Promise<Result[]> {
     console.log('----------------------\nParsing...\n----------------------\n');
     // Extract the content of the auditing results.
-    const readStream = fs.createReadStream(`${dir.dir}/output/audit.jsonl`, 'utf8');
+
+    const readStream = fs.createReadStream(`${dir.dir}/../output/audit.jsonl`, 'utf8');
     const data = await readAudit(readStream) as string;
     const results: Result[] = [];
     // Each line in the audit represents a valid JSON object.
@@ -172,7 +173,7 @@ export function readAudit(stream: fs.ReadStream, encoding = 'utf8') {
  */
 export async function parseSummary(): Promise<Map<number, string>> {
     // Get the content of the audit results.
-    const readStream = fs.createReadStream(`${dir.dir}/output/audit.jsonl`, 'utf8');
+    const readStream = fs.createReadStream(`${dir.dir}/../output/audit.jsonl`, 'utf8');
     const content: string = await readAudit(readStream) as string;
     // Get the audit results.
     const lines: string[] = content.split('\n').filter(line => line.length > 0);
@@ -227,7 +228,7 @@ export async function display(): Promise<void> {
     const date = new Date();
 
     // Determine if the audit was successful.
-    const readStream = fs.createReadStream(`${dir.dir}/output/audit.jsonl`, 'utf8');
+    const readStream = fs.createReadStream(`${dir.dir}/../output/audit.jsonl`, 'utf8');
     const data = await readAudit(readStream) as string;
     if (!data.length) {
         console.log('No new audit information available.\n');
@@ -244,7 +245,7 @@ export async function display(): Promise<void> {
     content += `\n${summary}\n`;
     content += '\n#### Scan Details\n';
     content += `\n${results}\n`;
-    fs.writeFileSync(`${dir.dir}/docs/README.md`, content);
+    fs.writeFileSync(`${dir.dir}/../docs/README.md`, content);
 }
 
 /**

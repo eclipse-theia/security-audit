@@ -34,11 +34,16 @@ jobs:
            export PATH=$HOME/.yarn/bin:$PATH ;
            yarn --version
 
+      - uses: actions/checkout@v1
+      - run: |
+          git submodule init
+          git submodule update
+        name: Checkout Theia
+
       - name: Install and Build
         run: |
           npm i
           npm run clean
-          npm run build
           npm run audit || true
           npm run parse
 
