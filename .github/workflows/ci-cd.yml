@@ -40,6 +40,12 @@ jobs:
           git submodule update
         name: Checkout Theia
 
+      - run: |
+          cd theia
+          git fetch --tags
+          git reset --hard origin/master
+        name: Update to latest Theia
+
       - name: Install and Build
         run: |
           npm i
