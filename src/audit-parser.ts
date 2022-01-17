@@ -239,7 +239,7 @@ export async function display(): Promise<void> {
     let content: string = '';
     const summary: string = await buildSummaryTable();
     const results: string = await buildResultsTable();
-    content += '<div align=\'center\'><br /><img src="https://raw.githubusercontent.com/theia-ide/security-audit/master/assets/security-header.png" width="400px"/></div>\n\n';
+    content += '<div align=\'center\'><br /><img src="https://raw.githubusercontent.com/eclipse-theia/security-audit/master/assets/security-header.png" width="400px"/></div>\n\n';
     content += `### Security Audit - ${dateStr}\n-- -\n`;
     content += '\n#### Scan Summary\n';
     content += `\n${summary}\n`;

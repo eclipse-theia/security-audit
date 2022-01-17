@@ -1,14 +1,14 @@
 <div align='center'>
 <br />
-<img src='https://raw.githubusercontent.com/theia-ide/security-audit/master/assets/logo.svg?sanitize=true' alt='theia logo' width='125'>
+<img src='https://raw.githubusercontent.com/eclipse-theia/security-audit/master/assets/logo.svg?sanitize=true' alt='theia logo' width='125'>
 
 <h2>THEIA - SECURITY AUDIT</h2>
 
 <div>
 
-[<img src="https://raw.githubusercontent.com/theia-ide/security-audit/master/assets/gh-pages.png" alt="github pages" width="150px"/>](https://theia-ide.github.io/security-audit/)
+[<img src="https://raw.githubusercontent.com/eclipse-theia/security-audit/master/assets/gh-pages.png" alt="github pages" width="150px"/>](https://eclipse-theia.github.io/security-audit/)
 
-[![Build](https://github.com/theia-ide/security-audit/workflows/Build%20and%20Deploy%20GitHub%20Page/badge.svg?branch=master)](https://github.com/theia-ide/security-audit/actions)
+[![Build](https://github.com/eclipse-theia/security-audit/workflows/Build%20and%20Deploy%20GitHub%20Page/badge.svg?branch=master)](https://github.com/eclipse-theia/security-audit/actions)
 </div>
 
 

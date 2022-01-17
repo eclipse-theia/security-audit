@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theia-ide/security-audit.git"
+    "url": "git+https://github.com/eclipse-theia/security-audit.git"
   },
   "keywords": [
     "security",
@@ -28,7 +28,7 @@
   "author": "Vincent Fugnitto",
   "license": "EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0",
   "bugs": {
-    "url": "https://github.com/theia-ide/security-audit/issues"
+    "url": "https://github.com/eclipse-theia/security-audit/issues"
   },
-  "homepage": "https://github.com/theia-ide/security-audit#readme"
+  "homepage": "https://github.com/eclipse-theia/security-audit#readme"
 }
