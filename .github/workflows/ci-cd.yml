@@ -60,3 +60,5 @@ jobs:
           BRANCH: gh-pages
           FOLDER: docs
           CLEAN: true
+          GIT_CONFIG_NAME: 'bot'
+          GIT_CONFIG_EMAIL: ''
